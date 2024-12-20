@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-body {
+main {
   max-width: 768px;
   margin: 0 auto;
 }
@@ -19,17 +19,14 @@ p {
   margin-bottom: 0.5rem;
 }
 
-button {
-  margin-right: 10px;
-  margin-top: 1rem;
-}
-
 .container {
   width: 100%;
   padding: 20px;
 }
 
 .btn {
+  margin-right: 10px;
+  margin-top: 1rem;
   padding: 10px 20px;
   background-color: #333;
   color: #fff;
