@@ -1,12 +1,7 @@
 <script>
   export let data;
   export let selectedMovie;
-  export let isOpenModal;
-
-  const handleCloseModal = () => {
-    isOpenModal = false;
-    selectedMovie = null;
-  } 
+  export let handleCloseModal;
 </script>
 
 <div class="modal">

@@ -23,6 +23,11 @@ import data from "./lib/movies";
     isOpenModal = true;
     selectedMovie = index;
   }
+
+  const handleCloseModal = () => {
+    isOpenModal = false;
+    selectedMovie = null;
+  } 
 </script>
 
 <main class="container">
@@ -47,7 +52,7 @@ import data from "./lib/movies";
   <Modal 
     data={data}
     selectedMovie={selectedMovie}
-    bind:isOpenModal={isOpenModal}
+    handleCloseModal={handleCloseModal}
   />
 {/if}
 
