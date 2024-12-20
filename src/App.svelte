@@ -2,6 +2,12 @@
   import data from "./lib/movies";
 
   let isOpenModal = false;
+
+  /**
+   * @type {number | null}
+   */
+  let selectedMovie = null;
+
   /**
    * @param {number} index
    */
@@ -9,12 +15,17 @@
     data[index].likeCount += 1;
   }
 
-  const handleOpenModal = () => {
+  /**
+   * @param {number} index
+   */
+  const handleOpenModal = (index) => {
     isOpenModal = true;
+    selectedMovie = index;
   }
 
   const handleCloseModal = () => {
     isOpenModal = false;
+    selectedMovie = null;
   } 
 </script>
 
@@ -30,7 +41,7 @@
         <p>개봉: {year}</p>
         <p>장르: {category}</p>
         <button class="btn" on:click={() => handleLike(index)}>좋아요 {likeCount}</button>
-        <button class="btn btn-primary" on:click={handleOpenModal}>상세보기</button>
+        <button class="btn btn-primary" on:click={() => handleOpenModal(index)}>상세보기</button>
       </div>
     </div>
   {/each}
@@ -39,7 +50,8 @@
 {#if isOpenModal}
   <div class="modal">
     <div class="inner">
-      <h3>영화 상세정보</h3>
+      <h3>{data[selectedMovie].title}</h3>
+      <p>{@html data[selectedMovie].story}</p>
       <button class="btn btn-close" on:click={handleCloseModal}>닫기</button>
     </div>
   </div>
