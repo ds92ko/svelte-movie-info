@@ -1,5 +1,6 @@
 <script>
-  import data from "./lib/movies";
+  import Modal from "./components/Modal.svelte";
+import data from "./lib/movies";
 
   let isOpenModal = false;
 
@@ -22,11 +23,6 @@
     isOpenModal = true;
     selectedMovie = index;
   }
-
-  const handleCloseModal = () => {
-    isOpenModal = false;
-    selectedMovie = null;
-  } 
 </script>
 
 <main class="container">
@@ -48,13 +44,11 @@
 </main>
 
 {#if isOpenModal}
-  <div class="modal">
-    <div class="inner">
-      <h3>{data[selectedMovie].title}</h3>
-      <p>{@html data[selectedMovie].story}</p>
-      <button class="btn btn-close" on:click={handleCloseModal}>닫기</button>
-    </div>
-  </div>
+  <Modal 
+    data={data}
+    selectedMovie={selectedMovie}
+    bind:isOpenModal={isOpenModal}
+  />
 {/if}
 
 <style>
@@ -82,25 +76,6 @@
 
     .info {
       width: 100%;
-    }
-  }
-
-  .modal {
-    background: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .inner {
-      background: #fff;
-      width: 80%;
-      padding: 20px;
-      border-radius: 10px;
     }
   }
 </style>
