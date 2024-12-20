@@ -1,9 +1,10 @@
 <script>
-  import Modal from "./components/Modal.svelte";
-import data from "./lib/movies";
+  import MoviesData from "./lib/movies";
+  import Movies from "./lib/components/Movies.svelte";
+  import Modal from "./lib/components/Modal.svelte";
 
+  let data = [...MoviesData];
   let isOpenModal = false;
-
   /**
    * @type {number | null}
    */
@@ -15,7 +16,6 @@ import data from "./lib/movies";
   const handleLike = (index) => {
     data[index].likeCount += 1;
   }
-
   /**
    * @param {number} index
    */
@@ -23,64 +23,14 @@ import data from "./lib/movies";
     isOpenModal = true;
     selectedMovie = index;
   }
-
   const handleCloseModal = () => {
     isOpenModal = false;
     selectedMovie = null;
   } 
 </script>
 
-<main class="container">
-  <h1>영화정보</h1>
-  {#each data as { title, year, category, likeCount, imgUrl }, index}
-    <div class="movie">
-      <figure>
-        <img src={imgUrl} alt={title} />
-      </figure>
-      <div class="info">
-        <h3 class="bg-yellow">{title}</h3>
-        <p>개봉: {year}</p>
-        <p>장르: {category}</p>
-        <button class="btn" on:click={() => handleLike(index)}>좋아요 {likeCount}</button>
-        <button class="btn btn-primary" on:click={() => handleOpenModal(index)}>상세보기</button>
-      </div>
-    </div>
-  {/each}
-</main>
+<Movies {data} {handleLike} {handleOpenModal} />
 
 {#if isOpenModal}
-  <Modal 
-    data={data}
-    selectedMovie={selectedMovie}
-    handleCloseModal={handleCloseModal}
-  />
+  <Modal {data} {selectedMovie} {handleCloseModal} />
 {/if}
-
-<style>
-  .bg-yellow {
-    background: yellow;
-    padding: 10px;
-    color: #333;
-  }
-
-  .movie {
-    width: 100%;
-    border: 1px solid #ccc;
-    display: flex;
-    margin-bottom: 20px;
-    padding: 1rem;
-
-    figure {
-      width: 30%;
-      margin-right: 1rem;
-    }
-
-    img {
-      width: 100%;
-    }
-
-    .info {
-      width: 100%;
-    }
-  }
-</style>
