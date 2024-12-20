@@ -16,9 +16,12 @@
 
 <style>
   .header {
+    position: relative;
     background: #333;
     color: #fff;
     padding: 1rem;
+    z-index: 100;
+    margin-bottom: 100px;
   }
 
   .nav-list {

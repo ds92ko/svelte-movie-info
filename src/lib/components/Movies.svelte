@@ -4,7 +4,7 @@
   export let handleOpenModal;
 </script>
 
-<main class="container">
+
   <h1>영화정보</h1>
   {#each data as { title, year, category, likeCount, imgUrl }, index}
     <div class="movie">
@@ -20,7 +20,6 @@
       </div>
     </div>
   {/each}
-</main>
 
 <style>
   .bg-yellow {
