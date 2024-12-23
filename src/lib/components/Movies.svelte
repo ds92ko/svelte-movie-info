@@ -4,22 +4,21 @@
   export let handleOpenModal;
 </script>
 
-
-  <h1>영화정보</h1>
-  {#each data as { title, year, category, likeCount, imgUrl }, index}
-    <div class="movie">
-      <figure>
-        <img src={imgUrl} alt={title} />
-      </figure>
-      <div class="info">
-        <h3 class="bg-yellow">{title}</h3>
-        <p>개봉: {year}</p>
-        <p>장르: {category}</p>
-        <button class="btn" on:click={() => handleLike(index)}>좋아요 {likeCount}</button>
-        <button class="btn btn-primary" on:click={() => handleOpenModal(index)}>상세보기</button>
-      </div>
+<h1>영화정보</h1>
+{#each data as { title, year, category, likeCount, imgUrl }, index}
+  <div class="movie">
+    <figure>
+      <img src={imgUrl} alt={title} />
+    </figure>
+    <div class="info">
+      <h3 class="bg-yellow">{title}</h3>
+      <p>개봉: {year}</p>
+      <p>장르: {category}</p>
+      <button class="btn" on:click={() => handleLike(index)}>좋아요 {likeCount}</button>
+      <button class="btn btn-primary" on:click={() => handleOpenModal(index)}>상세보기</button>
     </div>
-  {/each}
+  </div>
+{/each}
 
 <style>
   .bg-yellow {
