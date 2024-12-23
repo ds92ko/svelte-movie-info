@@ -32,7 +32,7 @@
 
 <style>
   .top-banner {
-    position: fixed;
+    position: absolute;
     top: 51px;
     width: 100%;
 

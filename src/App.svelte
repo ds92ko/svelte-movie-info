@@ -36,6 +36,6 @@
 <main class="container">
   <Movies {data} {handleLike} {handleOpenModal} />
   {#if isOpenModal}
-    <Modal {data} {selectedMovie} {handleCloseModal} />
+  <Modal {data} {selectedMovie} {handleCloseModal} />
   {/if}
 </main>
