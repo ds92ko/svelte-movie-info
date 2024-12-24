@@ -1,8 +1,8 @@
 <script>
   let keyword = '';
-  let errorMessage = '';
   export let data = [];
   export let searchData = [];
+  export let errorMessage = '';
 
   $: if (keyword.length > 16) {
     errorMessage = '검색어는 16자 이하로 입력해주세요.';
@@ -47,9 +47,6 @@ const resetSearch = () => {
     <button on:click={searchMovies}>검색</button>
     <button on:click={resetSearch}>초기화</button>
   </div>
-  {#if errorMessage}
-    <p class="error-message">{errorMessage}</p>
-  {/if}
 </div>
 
 <style>
@@ -83,9 +80,5 @@ const resetSearch = () => {
       margin: 0;
       border-left: 1px solid #ccc;
     }
-  }
-
-  .error-message {
-    color: red;
   }
 </style>

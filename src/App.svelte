@@ -13,18 +13,24 @@
    * @type {number | null}
    */
   let selectedMovie = null;
+  let errorMessage = '';
   /**
-   * @param {number} index
+   * @param {number} id
    */
-  const handleLike = (index) => {
-    data[index].likeCount += 1;
+  const handleLike = (id) => {
+    searchData = searchData.map(movie => {
+      if (movie.id === id) {
+        movie.likeCount += 1;
+      }
+      return movie;
+    });
   }
   /**
-   * @param {number} index
+   * @param {number} id
    */
-  const handleOpenModal = (index) => {
+  const handleOpenModal = (id) => {
     isOpenModal = true;
-    selectedMovie = index;
+    selectedMovie = id;
   }
   const handleCloseModal = () => {
     isOpenModal = false;
@@ -34,10 +40,20 @@
 
 <NavBar />
 <TopBanner />
-<SearchBar {data} bind:searchData />
+<SearchBar {data} bind:searchData bind:errorMessage />
 <main class="container">
-  <Movies data={searchData} {handleLike} {handleOpenModal} />
+  {#if errorMessage}
+    <p class="error-message">{errorMessage}</p>
+    {:else}
+    <Movies data={searchData} {handleLike} {handleOpenModal} />
+    {/if}
   {#if isOpenModal}
   <Modal data={searchData} {selectedMovie} {handleCloseModal} />
   {/if}
 </main>
+
+<style>
+  .error-message {
+    color: red;
+  }
+</style>

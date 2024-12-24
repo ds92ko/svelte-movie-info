@@ -5,7 +5,7 @@
 </script>
 
 <h1>영화정보</h1>
-{#each data as { title, year, category, likeCount, imgUrl }, index}
+{#each data as { id, title, year, category, likeCount, imgUrl }}
   <div class="movie">
     <figure>
       <img src={imgUrl} alt={title} />
@@ -14,8 +14,8 @@
       <h3 class="bg-yellow">{title}</h3>
       <p>개봉: {year}</p>
       <p>장르: {category}</p>
-      <button class="btn" on:click={() => handleLike(index)}>좋아요 {likeCount}</button>
-      <button class="btn btn-primary" on:click={() => handleOpenModal(index)}>상세보기</button>
+      <button class="btn" on:click={() => handleLike(id)}>좋아요 {likeCount}</button>
+      <button class="btn btn-primary" on:click={() => handleOpenModal(id)}>상세보기</button>
     </div>
   </div>
 {/each}

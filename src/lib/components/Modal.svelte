@@ -2,12 +2,14 @@
   export let data = [];
   export let selectedMovie;
   export let handleCloseModal;
+
+  const modalData = data.find(movie => movie.id === selectedMovie);
 </script>
 
 <div class="modal">
   <div class="inner">
-    <h3>{data[selectedMovie].title}</h3>
-    <p>{@html data[selectedMovie].story}</p>
+    <h3>{modalData.title}</h3>
+    <p>{@html modalData.story}</p>
     <button class="btn btn-close" on:click={handleCloseModal}>닫기</button>
   </div>
 </div>
