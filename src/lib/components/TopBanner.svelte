@@ -5,6 +5,9 @@
   const handleToggleEvent = () => {
     isOpenEvent = !isOpenEvent;
   }
+
+  export let banners = [];
+  export let currentBanner = 0;
 </script>
 
 <div class="top-banner">
@@ -13,7 +16,7 @@
       class="banner"
       transition:fly={{ y: -100, duration: 300 }}
     >
-      <p>NETFLIX 강렬한 운명의 드라마, 경기크리처</p>
+      <p>{banners[currentBanner]}</p>
       <button on:click={handleToggleEvent}>X</button>
     </div>
   {:else}

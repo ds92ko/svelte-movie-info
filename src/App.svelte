@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import MoviesData from "./lib/movies";
   import Movies from "./lib/components/Movies.svelte";
   import Modal from "./lib/components/Modal.svelte";
@@ -8,6 +9,12 @@
 
   let data = [...MoviesData];
   let searchData = [...data];
+  let banners = [
+    '영화 정보 업데이트',
+    '신규 영화 추가',
+    '이벤트 진행중'
+  ]
+  let currentBanner = 0;
   let isOpenModal = false;
   /**
    * @type {number | null}
@@ -35,11 +42,18 @@
   const handleCloseModal = () => {
     isOpenModal = false;
     selectedMovie = null;
-  } 
+  }
+
+  onMount(() => {
+    setTimeout(() => {
+      currentBanner += 1;
+      console.log(currentBanner);
+    }, 3000);
+  })
 </script>
 
 <NavBar />
-<TopBanner />
+<TopBanner {banners} {currentBanner} />
 <SearchBar {data} bind:searchData bind:errorMessage />
 <main class="container">
   {#if errorMessage}
